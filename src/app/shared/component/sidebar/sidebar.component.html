@@ -1,0 +1,19 @@
+<ul nz-menu [nzMode]="'inline'" nzTheme='dark' [nzInlineCollapsed]="isCollapsed" >
+  <template *ngFor="let data of dataList"> 
+      <li nz-submenu  [nzOpen]="data.isOpen" *ngIf="data.children.length" (nzOpenChange)="openHandler(data.name)" >
+        <span title>
+          <i class="anticon anticon-{{data.icon}}"></i>
+          <span>{{data.name}}</span>
+        </span>
+        <ul>
+          <li nz-menu-item (click)="jump(item.path)" *ngFor="let item of data.children">{{item.name}}</li>
+        </ul>
+      </li>
+      <li nz-menu-item *ngIf="data.children.length == 0" (click)="jump(data.path)">
+        <span title>
+          <i class="anticon anticon-{{data.icon}}"></i>
+          <span>{{data.name}}</span>
+        </span>
+      </li>
+  </template>
+</ul>
