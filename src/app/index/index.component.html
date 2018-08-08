@@ -4,9 +4,10 @@
   </nz-header>
   <nz-layout>
     <nz-sider>
-      <wsx-sidebar [isCollapsed] = "isCollapsed"></wsx-sidebar>
+      <wsx-sidebar [isCollapsed] = "isCollapsed" (tabs)="getTabs($event)" ></wsx-sidebar>
     </nz-sider>
     <nz-content>
+      <reuse-tab [tabsRouter]="tabsRouter"></reuse-tab>
       <router-outlet></router-outlet>
     </nz-content>
   </nz-layout>

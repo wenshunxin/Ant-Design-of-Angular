@@ -12,14 +12,14 @@ export class AuthRouteService {
 
   constructor() { }
   canActivate( route: ActivatedRouteSnapshot , state: RouterStateSnapshot){
-    console.log(route.url[0].path);
+    // console.log(route.url[0].path);
     return true;
   }
   canActivateChild(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ){
-    console.log(state.url)
+    // console.log(state.url)
     return true;
   }
 }

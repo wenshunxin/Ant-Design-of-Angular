@@ -17,6 +17,10 @@ const routes: Routes = [
         loadChildren:"./form/form.module#FormModule"
       },
       {
+        path:"mi8",
+        loadChildren:"./mi8/mi8.module#MI8Module"
+      },
+      {
         path:"progress",
         loadChildren:"./progress/progress.module#ProgressModule"
       },

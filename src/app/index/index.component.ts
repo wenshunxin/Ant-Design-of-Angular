@@ -7,17 +7,23 @@ import { ActivatedRoute } from "@angular/router";
 })
 export class IndexComponent implements OnInit {
   isCollapsed:boolean;
+  tabsRouter:string;
   constructor(
     private route:ActivatedRoute
   ) { }
 
   ngOnInit() {
     this.route.params.subscribe((params)=>{
-      console.log(params)
+      // console.log(params)
     })
   }
 
   getCollapsed(value:boolean):void{
     this.isCollapsed = value;
+  }
+
+  getTabs(value:string):void{
+    // console.log(value);
+    this.tabsRouter=value;
   }
 }

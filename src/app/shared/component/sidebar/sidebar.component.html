@@ -6,10 +6,10 @@
           <span>{{data.name}}</span>
         </span>
         <ul>
-          <li nz-menu-item (click)="jump(item.path)" *ngFor="let item of data.children">{{item.name}}</li>
+          <li nz-menu-item (click)="jump(item.path)" *ngFor="let item of data.children" [nzSelected]="item.isSelect">{{item.name}}</li>
         </ul>
       </li>
-      <li nz-menu-item *ngIf="data.children.length == 0" (click)="jump(data.path)">
+      <li nz-menu-item *ngIf="data.children.length == 0" (click)="jump(data.path)" nzSelected=true>
         <span title>
           <i class="anticon anticon-{{data.icon}}"></i>
           <span>{{data.name}}</span>

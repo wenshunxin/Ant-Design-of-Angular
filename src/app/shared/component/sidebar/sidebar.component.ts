@@ -1,6 +1,7 @@
-import { Component, OnInit,Input,Output } from '@angular/core';
+import { Component, OnInit,Input,Output,EventEmitter,SimpleChanges } from '@angular/core';
 import { Router } from "@angular/router";
 import { CommonService } from "../../../core/service/common.service";
+import { data } from "../../../mock/asider";
 @Component({
   selector: 'wsx-sidebar',
   templateUrl: './sidebar.component.html',
@@ -9,46 +10,9 @@ import { CommonService } from "../../../core/service/common.service";
 export class SidebarComponent implements OnInit {
   // isCollapsed:boolean = false;
   @Input() isCollapsed:boolean;
-  dataList=[
-      {
-      name:"基础知识",
-      icon:"setting",
-      path:"",
-      children:[
-        {
-          name:"表单",
-          path:"/index/form"
-        },
-        {
-          name:"表格",
-          path:"/index/table"
-        }
-      ]
-    },
-    {
-      name:"知识点_2",
-      icon:"mail",
-      path:"/index/form",
-      children:[]
-    },
-    {
-      name:"知识点",
-      icon:"heart-o",
-      path:"",
-      children:[
-        {
-          name:"进度条",
-          path:"/index/progress"
-        }
-      ]
-    },
-    {
-      name:"知识点_1",
-      icon:"mail",
-      path:"/index/table",
-      children:[]
-    }
-  ]
+  @Output() tabs = new EventEmitter<any>();
+
+  dataList=data.asider;
   constructor(
     private router : Router ,
     public cs:CommonService
@@ -57,18 +21,27 @@ export class SidebarComponent implements OnInit {
   ngAfterViewInit():void{
     
   }
+
+  ngOnChanges(changes: SimpleChanges){
+    console.log("1");
+    console.log(this.router.url)
+  }
   ngOnInit() {
+    
     this.dataList.forEach(item=>{
       item["isOpen"] = false;
       item.children.forEach(item_1=>{
         if((item_1 && item_1.path) == this.router.url){
           item["isOpen"] = true;
+          item["isSelect"] =true;
         }
       })
     })
+    this.tabs.emit(this.router.url);
   }
   jump(path:string):void{
-    this.router.navigate([path])
+    this.router.navigate([path]);
+    this.tabs.emit(path);
   }
   openHandler(name:string):void{
     this.dataList.forEach((value) => {

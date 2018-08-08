@@ -14,10 +14,11 @@ registerLocaleData(zh);
 
 import { HeaderComponent } from "./component/header/header.component";
 import { SidebarComponent } from './component/sidebar/sidebar.component';
+import { ReuseTabComponent } from './component/reuse-tab';
 import { WsxUploadComponent } from "./component/wsx-upload";
 // 常量
 
-const components = [HeaderComponent,SidebarComponent,WsxUploadComponent];
+const components = [HeaderComponent,SidebarComponent,WsxUploadComponent,ReuseTabComponent];
 const directives = [];
 const pipes = [];
 
